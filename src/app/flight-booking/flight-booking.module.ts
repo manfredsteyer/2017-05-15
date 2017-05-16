@@ -5,12 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { FlightSearchComponent } from './flight-search/flight-search.component';
 import { FlightService } from './flight-search/flight.service';
+import { FlightCardComponent } from './flight-search/flight-card.component';
 @NgModule({
   imports: [
     CommonModule, FormsModule, SharedModule
   ],
   declarations: [
-    FlightSearchComponent
+    FlightSearchComponent,
+    FlightCardComponent
   ],
   providers: [
     // FlightService
@@ -19,6 +21,6 @@ import { FlightService } from './flight-search/flight.service';
     FlightSearchComponent
   ]
 })
-export class FlightBooking {
+export class FlightBookingModule {
 
 }

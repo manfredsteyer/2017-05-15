@@ -15,7 +15,11 @@ export class FlightSearchComponent {
   to: string;
   flights: Array<Flight> = [];
   selectedFlight: Flight;
-
+  basket: any = {
+    "3": true,
+    "4": false,
+    "5": true
+  };
   //private http: Http;
 
   constructor(private flightService: FlightService) {

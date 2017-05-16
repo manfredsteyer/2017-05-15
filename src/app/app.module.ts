@@ -8,14 +8,14 @@ import { FlightSearchComponent } from './flight-booking/flight-search/flight-sea
 import { FlightService } from './flight-booking/flight-search/flight.service';
 import { BASE_URL } from './app.tokens';
 import { CityPipe } from './shared/pipes/city.pipe';
-import { FlightBooking } from './flight-booking/flight-booking.module';
+import { FlightBookingModule } from './flight-booking/flight-booking.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    FlightBooking
+    FlightBookingModule
   ],
   declarations: [
     AppComponent
