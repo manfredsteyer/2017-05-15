@@ -1,0 +1,91 @@
+<h1>Reactive Flight Search</h1>
+<div class="row">
+<div class="card">
+
+  <form [formGroup]="filter">
+
+    <h2>Dynamic Form</h2>
+
+    <div *ngFor="let entry of formMetaData" class="form-group">
+      <label>{{entry.label}}</label>
+      <input [formControlName]="entry.name" class="form-control">
+    </div>
+
+
+    <h2>Static Form</h2>
+
+
+  <div class="form-group">
+    <label for="from">From:</label>
+    <input
+      id="from"
+      formControlName="from"
+      class="form-control">
+
+    <div *ngIf="!filter.controls['from'].valid">
+      ... Fehler ...
+      <pre>{{ filter.controls['from'].errors | json }}</pre>
+    </div>
+
+    <div *ngIf="filter.controls['from'].hasError('required')">
+      ... required ...
+    </div>
+
+    <div *ngIf="filter.controls['from'].hasError('minlength')">
+      ... min ...
+    </div>
+
+    <div *ngIf="filter.controls['from'].hasError('maxlength')">
+      ... maxlength ...
+    </div>
+
+    <div *ngIf="filter.controls['from'].hasError('pattern')">
+      ... pattern ...
+    </div>
+  </div>
+
+
+
+  <div class="form-group">
+    <label>To:</label>
+    <input
+      formControlName="to"
+      class="form-control">
+  </div>
+
+  <div class="form-group">
+    <button [disabled]="filter.invalid" (click)="search(f)" class="btn btn-default">Search</button>
+  </div>
+  </form>
+</div>
+</div>
+
+
+<!--
+<div class="card" *ngIf="flights.length > 0">
+
+  <table class="table table-condensed">
+    <tr *ngFor="let flight of flights" [ngClass]="{ 'active': flight == selectedFlight }">
+      <td>{{flight.id}}</td>
+      <td>{{flight.from | city:'short'}}</td>
+      <td>{{flight.to | city:'long'}}</td>
+      <td>{{flight.date | date:'dd.MM.yyyy HH:mm'}}</td>
+      <td><a (click)="select(flight)">Select</a></td>
+    </tr>
+  </table>
+</div>
+-->
+<div class="row">
+<div *ngFor="let f of flights" class="col col-xs-12 col-sm-6 col-md-4 col-lg-3">
+  <flight-card
+    [item]="f"
+    [(selected)]="basket[filter.id]"></flight-card>
+</div>
+</div>
+
+<div class="row">
+  <div class="card">
+    <h2>Basket</h2>
+    <pre>{{ basket | json }}</pre>
+  </div>
+</div>
