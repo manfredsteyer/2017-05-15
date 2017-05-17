@@ -5,6 +5,7 @@ import { Flight } from '../../entities/flight';
 import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FlightService } from '../flight-search/flight.service';
 import { CityValidator } from '../../shared/validation/city.validator';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'reactive-flight-search',
@@ -24,11 +25,14 @@ export class ReactiveFlightSearchComponent {
     "5": true
   };
   //private http: Http;
+  loading = false;
 
   formMetaData = [
     { label:  'Airport of Departure', name: 'from'},
     { label:  'Airport of Destination', name: 'to'},
   ];
+
+  flights$: Observable<Flight[]>;
 
   constructor(
     private flightService: FlightService,
@@ -52,13 +56,23 @@ export class ReactiveFlightSearchComponent {
       ]
     });
 
-    this.filter.valueChanges.subscribe(form => {
-      console.debug('das gesamte Formular', form);
-    });
 
-    this.filter.controls['from'].valueChanges.subscribe(value => {
-      console.debug('das Feld from', value);
-    })
+    this.flights$ = this
+                      .filter
+                      .valueChanges
+                      .debounceTime(500)
+                      .filter(value => this.filter.valid)
+                      .do((v) => {
+                        console.debug(v);
+                        this.loading = true;
+                      })
+                      .switchMap(value => this.flightService.find(value.from, value.to))
+                      .do((v) => {
+                        console.debug(v);
+                        this.loading = false;
+                      });
+
+
 
   }
   search(): void {

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+                            // ^--- Alles
+                            // rxjs/Observable
 
 @Component({
   selector: 'flight-app',
@@ -11,4 +14,37 @@ export class AppComponent {
   doStuff() {
     this.title = "stuff done!";
   }
+
+  time$: Observable<number>;
+
+  constructor() {
+    let time$ = Observable
+      .interval(1000)
+      .startWith(0)
+      .map(value => new Date(value * 1000))
+      .do(value => {
+        console.debug('New date', value);
+      })
+      .map(date => date.getSeconds());
+
+    this.time$ = time$;
+
+    console.debug('$time observable created ...');
+
+    /*
+    time$.subscribe(
+      (date: Date) => {
+        console.debug('date', date.getSeconds());
+      }
+    );
+
+    time$.subscribe(
+      (date: Date) => {
+        console.debug('date 2', date.getSeconds());
+      }
+    );
+  */
+
+  }
+
 }

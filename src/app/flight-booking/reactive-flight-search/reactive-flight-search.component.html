@@ -4,12 +4,14 @@
 
   <form [formGroup]="filter">
 
+    <!--
     <h2>Dynamic Form</h2>
 
     <div *ngFor="let entry of formMetaData" class="form-group">
       <label>{{entry.label}}</label>
       <input [formControlName]="entry.name" class="form-control">
     </div>
+    -->
 
 
     <h2>Static Form</h2>
@@ -76,7 +78,7 @@
 </div>
 -->
 <div class="row">
-<div *ngFor="let f of flights" class="col col-xs-12 col-sm-6 col-md-4 col-lg-3">
+<div *ngFor="let f of flights$ | async" class="col col-xs-12 col-sm-6 col-md-4 col-lg-3">
   <flight-card
     [item]="f"
     [(selected)]="basket[filter.id]"></flight-card>
