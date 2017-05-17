@@ -6,6 +6,7 @@ import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FlightService } from '../flight-search/flight.service';
 import { CityValidator } from '../../shared/validation/city.validator';
 import { Observable } from 'rxjs';
+import { EventService } from '../../event.service';
 
 @Component({
   selector: 'reactive-flight-search',
@@ -36,11 +37,12 @@ export class ReactiveFlightSearchComponent {
 
   constructor(
     private flightService: FlightService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private eventService: EventService) {
     // this.http = http;
     this.filter = fb.group({
       from: [
-        'Hamburg',
+        '',
         [
           // Validators.minLength(3),
           // Validators.maxLength(30),
@@ -51,7 +53,7 @@ export class ReactiveFlightSearchComponent {
         ]
       ],
       to: [
-        'Graz'
+        ''
       ]
     });
 
@@ -60,6 +62,8 @@ export class ReactiveFlightSearchComponent {
                       .filter
                       .valueChanges
                       .debounceTime(500)
+                      .filter(v => v.from.length > 2 )
+                      .distinctUntilChanged( (oldVal, newVal) => oldVal.from === newVal.from)
                       .filter(value => this.filter.valid)
                       .do((v) => {
                         console.debug(v);
@@ -93,7 +97,7 @@ export class ReactiveFlightSearchComponent {
   }
 
   select(f: Flight) {
-    this.selectedFlight = f;
+    this.eventService.flightSelected.next(f);
   }
 
 }

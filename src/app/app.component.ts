@@ -15,7 +15,13 @@ export class AppComponent {
     this.title = "stuff done!";
   }
 
+  showBasket = false;
+
   time$: Observable<number>;
+
+  toggleBasket() {
+    this.showBasket = !this.showBasket;
+  }
 
   constructor() {
     let time$ = Observable
@@ -25,11 +31,26 @@ export class AppComponent {
       .do(value => {
         console.debug('New date', value);
       })
-      .map(date => date.getSeconds());
+      .map(date => date.getSeconds())
+      .publish();
 
-    this.time$ = time$;
+
 
     console.debug('$time observable created ...');
+    time$.subscribe(
+      v => console.debug('s1', v)
+    );
+    time$.subscribe(
+      v => console.debug('s2', v)
+    );
+    time$.subscribe(
+      v => console.debug('s3', v)
+    );
+    time$.subscribe();
+    time$.subscribe();
+    time$.subscribe();
+
+    time$.connect();
 
     /*
     time$.subscribe(

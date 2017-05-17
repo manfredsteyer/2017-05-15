@@ -1,3 +1,15 @@
 <div class="container">
-  <reactive-flight-search></reactive-flight-search>
+  <div class="card">
+    <a (click)="toggleBasket()">Toggle Basket</a>
+  </div>
+
+  <div class="col col-md-9">
+    <reactive-flight-search></reactive-flight-search>
+  </div>
+  <div class="col col-md-3" *ngIf="showBasket">
+    <basket></basket>
+  </div>
 </div>
+
+
+

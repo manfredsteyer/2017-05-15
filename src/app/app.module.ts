@@ -9,6 +9,8 @@ import { FlightService } from './flight-booking/flight-search/flight.service';
 import { BASE_URL } from './app.tokens';
 import { CityPipe } from './shared/pipes/city.pipe';
 import { FlightBookingModule } from './flight-booking/flight-booking.module';
+import { EventService } from './event.service';
+import { BasketComponent } from './basket/basket.component';
 
 @NgModule({
   imports: [
@@ -18,11 +20,13 @@ import { FlightBookingModule } from './flight-booking/flight-booking.module';
     FlightBookingModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    BasketComponent
   ],
   providers: [
     // { provide: FlightService, useClass: FlightService }
     // FlightService
+    EventService,
     { provide: BASE_URL, useValue: 'http://www.angular.at/api'}
   ],
   bootstrap: [AppComponent]

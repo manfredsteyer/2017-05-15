@@ -56,9 +56,12 @@
       class="form-control">
   </div>
 
+    <!--
   <div class="form-group">
     <button [disabled]="filter.invalid" (click)="search(f)" class="btn btn-default">Search</button>
   </div>
+  -->
+
   </form>
 </div>
 </div>
@@ -82,7 +85,10 @@
 <div *ngFor="let f of flights$ | async" class="col col-xs-12 col-sm-6 col-md-4 col-lg-3">
   <flight-card
     [item]="f"
-    [(selected)]="basket[filter.id]"></flight-card>
+    [(selected)]="basket[f.id]"></flight-card>
+
+  <button class="btn btn-default" (click)="select(f)">Select</button>
+
 </div>
 </div>
 

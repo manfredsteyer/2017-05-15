@@ -1,0 +1,21 @@
+
+<div class="panel panel-default">
+
+  <div class="panel-heading">Your Basket</div>
+
+  <ul class="list-group">
+
+    <li class="list-group-item" *ngIf="flights.length == 0">
+      Your basket is empty!
+    </li>
+
+    <li class="list-group-item" *ngFor="let f of flights">
+      <p>
+        Id: {{f.id}}, {{f.from}} - {{f.to}}
+      </p>
+      <p>
+        {{f.date | date: 'dd.MM.yyyy HH:mm'}}
+      </p>
+    </li>
+  </ul>
+</div>
