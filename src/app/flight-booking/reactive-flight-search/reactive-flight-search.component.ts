@@ -38,17 +38,16 @@ export class ReactiveFlightSearchComponent {
     private flightService: FlightService,
     private fb: FormBuilder) {
     // this.http = http;
-
     this.filter = fb.group({
       from: [
         'Hamburg',
         [
-          Validators.minLength(3),
-          Validators.maxLength(30),
-          Validators.required,
-          Validators.pattern('[A-Za-z]*'),
-          CityValidator.validateCity,
-          CityValidator.validateCityWithParams(['Graz', 'Hamburg'])
+          // Validators.minLength(3),
+          // Validators.maxLength(30),
+          // Validators.required,
+          // Validators.pattern('[A-Za-z]*'),
+          //CityValidator.validateCity,
+          //CityValidator.validateCityWithParams(['Graz', 'Hamburg'])
         ]
       ],
       to: [
