@@ -31,26 +31,7 @@ export class AppComponent {
       .do(value => {
         console.debug('New date', value);
       })
-      .map(date => date.getSeconds())
-      .publish();
-
-
-
-    console.debug('$time observable created ...');
-    time$.subscribe(
-      v => console.debug('s1', v)
-    );
-    time$.subscribe(
-      v => console.debug('s2', v)
-    );
-    time$.subscribe(
-      v => console.debug('s3', v)
-    );
-    time$.subscribe();
-    time$.subscribe();
-    time$.subscribe();
-
-    time$.connect();
+      .map(date => date.getSeconds());
 
     /*
     time$.subscribe(

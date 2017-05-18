@@ -1,15 +1,32 @@
-<div class="container">
-  <div class="card">
-    <a (click)="toggleBasket()">Toggle Basket</a>
+<nav class="navbar navbar-default navbar-fixed-top">
+
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">Holiday42</a>
   </div>
 
+  <ul class="nav navbar-nav">
+    <li><a routerLink="home">Home</a></li>
+    <li><a routerLink="flight-search">Flight Search</a></li>
+    <li><a routerLink="reactive-flight-search">Reactive Flight Search</a></li>
+    <li><a routerLink="passenger-search">Passenger Search</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
   <div class="col col-md-9">
-    <reactive-flight-search></reactive-flight-search>
+
+    <router-outlet></router-outlet>
+
   </div>
   <div class="col col-md-3" *ngIf="showBasket">
+    <div class="card">
+      <a (click)="toggleBasket()">Toggle Basket</a>
+    </div>
     <basket></basket>
   </div>
 </div>
+
 
 
 

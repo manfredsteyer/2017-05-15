@@ -7,17 +7,24 @@ import { FlightSearchComponent } from './flight-search/flight-search.component';
 import { FlightService } from './flight-search/flight.service';
 import { FlightCardComponent } from './flight-search/flight-card.component';
 import { ReactiveFlightSearchComponent } from './reactive-flight-search/reactive-flight-search.component';
+import { FlightBookingRouterModule } from './flight-booking.routes';
+import { PassengerSearchComponent } from './passenger-search/passenger-search.component';
+import { FlightEditComponent } from './flight-edit/flight-edit.component';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlightBookingRouterModule
   ],
   declarations: [
     ReactiveFlightSearchComponent,
     FlightSearchComponent,
-    FlightCardComponent
+    FlightCardComponent,
+    PassengerSearchComponent,
+    FlightEditComponent
   ],
   providers: [
     // FlightService

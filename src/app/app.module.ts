@@ -11,17 +11,21 @@ import { CityPipe } from './shared/pipes/city.pipe';
 import { FlightBookingModule } from './flight-booking/flight-booking.module';
 import { EventService } from './event.service';
 import { BasketComponent } from './basket/basket.component';
+import { AppRouterModule } from './app.routes';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    FlightBookingModule
+    FlightBookingModule,
+    AppRouterModule
   ],
   declarations: [
     AppComponent,
-    BasketComponent
+    BasketComponent,
+    HomeComponent
   ],
   providers: [
     // { provide: FlightService, useClass: FlightService }
