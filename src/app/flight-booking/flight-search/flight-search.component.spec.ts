@@ -93,19 +93,7 @@ describe('FlightSearchComponent', () => {
     let comp = fixture.componentInstance;
     comp.from = '';
     comp.to = '';
-    comp.search()
-        .subscribe(
-      (result) => {
-        console.debug(result);
-        fail(result);
-        done();
-      },
-      (err) => {
-        console.debug(err);
-        expect(comp.flights.length).toBe(0);
-        done();
-      }
-    );
+    comp.search();
 
     // Anhalten
 
@@ -133,7 +121,7 @@ describe('FlightSearchComponent', () => {
     let comp = fixture.componentInstance;
     comp.from = 'Hamburg';
     comp.to = 'Graz';
-    comp.search().subscribe();
+    comp.search();
     expect(comp.flights.length).toBe(5);
   });
 });

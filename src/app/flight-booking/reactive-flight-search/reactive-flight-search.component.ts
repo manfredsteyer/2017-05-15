@@ -16,7 +16,9 @@ import { EventService } from '../../event.service';
 })
 export class ReactiveFlightSearchComponent {
 
-  flights: Array<Flight> = [];
+  get flights(): Array<Flight> {
+    return this.flightService.flights;
+  }
   selectedFlight: Flight;
   filter: FormGroup;
 
@@ -57,7 +59,7 @@ export class ReactiveFlightSearchComponent {
       ]
     });
 
-
+/*
     this.flights$ = this
                       .filter
                       .valueChanges
@@ -74,7 +76,7 @@ export class ReactiveFlightSearchComponent {
                         console.debug(v);
                         this.loading = false;
                       });
-
+*/
 
 
   }
@@ -84,15 +86,7 @@ export class ReactiveFlightSearchComponent {
     // this.filter.controls['from'].setValue('Kognito');
 
     this.flightService
-        .find(this.filter.value.from, this.filter.value.to)
-        .subscribe(
-          (flights: Flight[]) => {
-            this.flights = flights;
-          },
-          (errResp) => {
-            console.error('Fehler beim Laden', errResp);
-          }
-        )
+        .find(this.filter.value.from, this.filter.value.to);
 
   }
 
