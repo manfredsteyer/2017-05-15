@@ -5,12 +5,14 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'flight-edit',
   template: `
     <h1>Flight Edit</h1>
+    <div class="card">
     <p>
       Id: {{id}}
     </p>
     <p>
       ShowDetails: {{showDetails}}
     </p>
+    </div>
   `
 })
 export class FlightEditComponent implements OnInit{
@@ -26,6 +28,11 @@ export class FlightEditComponent implements OnInit{
       this.id = params['id'];
       this.showDetails = params['showDetails'];
     });
+
+    this.route.data.subscribe(data => {
+      let flight = data['flight'];
+      console.debug('flight from resolver', flight);
+    })
   }
 
 }

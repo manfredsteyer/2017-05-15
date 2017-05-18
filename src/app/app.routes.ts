@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { FlightSearchComponent } from './flight-booking/flight-search/flight-search.component';
 import { ReactiveFlightSearchComponent } from './flight-booking/reactive-flight-search/reactive-flight-search.component';
 import { PassengerSearchComponent } from './flight-booking/passenger-search/passenger-search.component';
+import { BasketComponent } from './basket/basket.component';
 
 const APP_ROUTES: Routes = [
   {
@@ -13,6 +14,11 @@ const APP_ROUTES: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'basket',
+    component: BasketComponent,
+    outlet: 'aux'
   },
   /*
   */

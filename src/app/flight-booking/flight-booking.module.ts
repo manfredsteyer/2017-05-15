@@ -10,6 +10,8 @@ import { ReactiveFlightSearchComponent } from './reactive-flight-search/reactive
 import { FlightBookingRouterModule } from './flight-booking.routes';
 import { PassengerSearchComponent } from './passenger-search/passenger-search.component';
 import { FlightEditComponent } from './flight-edit/flight-edit.component';
+import { FlightBookingComponent } from './flight-booking.component';
+import { FlightResolver } from './flight-edit/flight.resolver';
 
 @NgModule({
   imports: [
@@ -24,10 +26,12 @@ import { FlightEditComponent } from './flight-edit/flight-edit.component';
     FlightSearchComponent,
     FlightCardComponent,
     PassengerSearchComponent,
-    FlightEditComponent
+    FlightEditComponent,
+    FlightBookingComponent
   ],
   providers: [
-    // FlightService
+    //FlightService,
+    FlightResolver
   ],
   exports: [
     ReactiveFlightSearchComponent,

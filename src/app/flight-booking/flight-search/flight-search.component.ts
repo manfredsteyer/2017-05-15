@@ -10,14 +10,19 @@ import { Observable, Observer } from 'rxjs';
   selector: 'flight-search',
   templateUrl: 'flight-search.component.html',
   styleUrls: ['./flight-search.component.css'],
-  providers: [FlightService]
+  //providers: [FlightService]
 })
 export class FlightSearchComponent {
 
   from: string;
   to: string;
-  flights: Array<Flight> = [];
+  // flights: Array<Flight> = [];
   selectedFlight: Flight;
+
+  // flights --> flights()
+  get flights() {
+    return this.flightService.flights;
+  }
 
   @ViewChild('f')
   form: NgForm;
@@ -33,31 +38,8 @@ export class FlightSearchComponent {
     // this.http = http;
   }
 
-  search(): Observable<Flight[]> {
-
-    if (!this.from || !this.to) {
-      return Observable.throw('from and to expected!');
-    }
-
-    let result = Observable.create( (sender: Observer<Flight[]>) => {
-      this.flightService
-          .find(this.from, this.to)
-          .subscribe(
-            (flights: Flight[]) => {
-              this.flights = flights;
-              sender.next(this.flights);
-            },
-            (errResp) => {
-              console.error('Fehler beim Laden', errResp);
-              sender.error(errResp);
-            }
-          )
-    })
-    .publish();
-
-    result.connect();
-
-    return result;
+  search(): void {
+      this.flightService.find(this.from, this.to);
   }
 
   select(f: Flight) {
