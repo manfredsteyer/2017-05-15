@@ -14,7 +14,7 @@ import { AuthService } from './auth/auth.service';
   ],
   providers: [
     AuthGuard,
-    AuthService
+    // AuthService
   ],
   exports: [
     CityPipe

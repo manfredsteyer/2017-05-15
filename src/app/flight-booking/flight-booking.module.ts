@@ -12,6 +12,7 @@ import { PassengerSearchComponent } from './passenger-search/passenger-search.co
 import { FlightEditComponent } from './flight-edit/flight-edit.component';
 import { FlightBookingComponent } from './flight-booking.component';
 import { FlightResolver } from './flight-edit/flight.resolver';
+import { AuthModule } from '../auth/auth.module';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { FlightResolver } from './flight-edit/flight.resolver';
     FormsModule,
     SharedModule,
     ReactiveFormsModule,
-    FlightBookingRouterModule
+    FlightBookingRouterModule,
+    AuthModule
   ],
   declarations: [
     ReactiveFlightSearchComponent,

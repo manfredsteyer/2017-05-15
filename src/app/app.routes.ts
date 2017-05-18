@@ -1,4 +1,4 @@
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { FlightSearchComponent } from './flight-booking/flight-search/flight-search.component';
 import { ReactiveFlightSearchComponent } from './flight-booking/reactive-flight-search/reactive-flight-search.component';
@@ -16,6 +16,10 @@ const APP_ROUTES: Routes = [
     component: HomeComponent
   },
   {
+    path: 'flight-booking',
+    loadChildren: './flight-booking/flight-booking.module#FlightBookingModule'
+  },
+  {
     path: 'basket',
     component: BasketComponent,
     outlet: 'aux'
@@ -28,4 +32,8 @@ const APP_ROUTES: Routes = [
   }
 ];
 
-export const AppRouterModule = RouterModule.forRoot(APP_ROUTES);
+export const AppRouterModule =
+  RouterModule.forRoot(APP_ROUTES, {
+    preloadingStrategy: PreloadAllModules
+  });
+
